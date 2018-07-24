@@ -1,0 +1,14 @@
+{
+    "python.pythonPath": "C:/Project/Envs/todos/Scripts/python.exe",
+    "python.linting.pep8Enabled": true,
+    "python.linting.pylintPath": "C:/Project/Envs/todos/Scripts/pylint.exe",
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django"
+    ],
+    "python.linting.pylintEnabled": true,
+    "editor.rulers": [
+        80,
+        120
+    ]
+}
