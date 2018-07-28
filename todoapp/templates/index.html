@@ -18,13 +18,15 @@
   {% verbatim %}
   <div id="app">
     <ul>
-      <li>{{ todo }}</li>
+      <li v-for="todo in todos">{{ todo.title }}</li>
     </ul>
   </div>
   {% endverbatim %}
 
   <!-- production version, optimized for size and speed -->
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.0/vue.js"></script>
+  <!-- axios cdn -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- <script src="../static/todoapp/js/main.js"></script> -->
   {% load staticfiles %}
   <script src="{% static 'todoapp/js/main.js' %}"></script>
