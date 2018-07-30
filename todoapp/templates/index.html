@@ -8,6 +8,7 @@
   <title>Todos</title>
   
   <!-- <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   {% load staticfiles %}
   <link rel="stylesheet" type="text/css" href="{% static 'todoapp/css/style.css' %}" />
 
@@ -17,14 +18,28 @@
   <h1>TodoApp</h1>
   {% verbatim %}
   <div id="app">
-    <ul>
-      <li v-for="todo in todos">{{ todo.title }}</li>
+    <div id="todoInput" class="boxShadow">
+      <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
+      <button v-on:click="addTodo">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+    <ul id="todoList">
+      <li class="todoItem boxShadow" v-for="(todo, index) in todos">
+          <span class="checkButton" v-on:click="toggleComplete(todo, index)">
+            <i class="fas fa-check" v-bind:class="{ complete: todo.complete }"></i>
+            <p>{{ todo.title }}</p>
+          </span>
+          <span class="removeButton" v-on:click="removeTodo(todo, index)">
+            <i class="fas fa-trash-alt"></i>
+          </span>
+      </li>
     </ul>
   </div>
   {% endverbatim %}
 
   <!-- production version, optimized for size and speed -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.0/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
   <!-- axios cdn -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- <script src="../static/todoapp/js/main.js"></script> -->

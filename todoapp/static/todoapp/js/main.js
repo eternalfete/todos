@@ -1,69 +1,65 @@
+"use strict";
+
 var app = new Vue({
   el: '#app',
   data: {
-    todos: []
+    url: 'http://localhost:8000/api/todos/',
+    todos: [],
+    newTodoItem: ''
   },
   methods: {
     getData: function() {
-      console.log('bb');
-      axios.get('http://localhost:8000/api/todos/')
-        .then(function(response) {
-          console.log(response);
+      axios.get(this.url)
+        .then(response => {
           this.todos = response.data;
-          console.log(this.todos);
-        }).catch(function() {
-          console.log('aa');  
+        })
+        .catch(error => {
+          console.log(error);
         });
-      }
     },
-    created() {
-      console.log('created');
-      // this.getData();
-    },
-    mounted() {
-      console.log('mounted');
-      axios.get('http://localhost:8000/api/todos/')
-        .then(function(response) {
-          console.log(response);
-          this.todos = response.data;
-          console.log(this.todos);
-        }).catch(function() {
-          console.log('aa');  
+    addTodo: function() {
+      if (this.newTodoItem !== "") {
+        axios.post(this.url, {
+        'title': this.newTodoItem
+        })
+        .then(result => {
+        this.todos.push(result.data);
+        this.clearInput();
+        })
+        .catch(error => {
+          console.log(error);
         });
-      // this.getData();
-      console.log('mounted todos:'+this.todos);
+      }      
     },
-    updated() {
-      console.log('updated');
-      console.log('updated todos:', this.todos);
+    clearInput: function() {
+      this.newTodoItem = '';
+    },
+    toggleComplete: function(todo, index) {
+      var updatedData = {
+        'id': todo.id,
+        'title': todo.title,
+        'complete': !todo.complete,
+        'created': todo.created
+      };
+      axios.put(this.url + todo.id + '/', updatedData)
+      .then(result => {
+        todo.complete = !todo.complete;
+      })
+      .catch(error => {
+        console.log(error);
+      });      
+    },
+    removeTodo: function(todo, index) {
+      axios.delete(this.url + todo.id)
+      .then(result => {
+        this.todos.splice(index, 1);
+      })
+      .catch(error => {
+        console.log(error);
+      });      
     }
+  },
+  created() {
+    this.getData();
+  }
 })
-
-// var app = new Vue({
-//   el: '#app',
-//   data () {
-//     return {
-//       todos: null,
-//       loading: true,
-//       errored: false
-//     }
-//   },
-//   filters: {
-//     currencydecimal (value) {
-//       return value.toFixed(2)
-//     }
-//   },
-//   mounted () {
-//     axios
-//       .get('http://localhost:8000/api/todos/')
-//       .then(response => {
-//         this.todos = response.data
-//         console.log(this.todos);
-//       })
-//       .catch(error => {
-//         console.log(error)
-//         this.errored = true
-//       })
-//       .finally(() => this.loading = false)
-//   }
-// })

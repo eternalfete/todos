@@ -1,0 +1,120 @@
+body {
+  background-color: honeydew;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3em;
+}
+
+#app {
+  align-items: center;
+}
+
+#todoInput {
+  margin: 20px auto;
+  width: 50%;
+  min-width: 360px;
+  max-width: 480px;
+  height: 60px;
+  display: flex;
+}
+
+#todoInput input {
+  border: none;
+  width: 85%;
+  font-size: 1.5em;
+  padding: 0 0.9rem;
+}
+
+#todoInput button {
+  border: none;
+  color: ghostwhite;
+  font-size: large;
+  width: 15%;
+  background-color: turquoise;
+}
+
+#todoInput button:hover {
+  background-color: lightseagreen;
+  box-shadow: 6px 6px 6px lightgray;
+}
+
+#todoInput button:active {
+  background-color: lightseagreen;
+  box-shadow: 3px 3px 6px lightgray;
+  transform: translate(1px, 1px);
+}
+
+#todoList {
+  list-style: none;
+  text-align: left;
+  width: 50%;
+  min-width: 360px;
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 0;
+}
+
+.todoItem {
+  display: flex;
+  min-height: 50px;
+  height: 50px;
+  margin: 12px 0;
+  padding-left: 0.9rem;
+  background-color: white;
+  align-items: center;
+}
+
+.checkButton {
+  font-size: 1.2em;
+  font-family: '나눔고딕';
+  color: black;
+  width: 85%;
+}
+
+.checkButton > p {
+  display: inline-flex;
+}
+
+.checkButton > .fa-check {
+  color: lightgray;
+  margin-right: 5px;
+}
+
+.checkButton > .complete {
+  color: lightseagreen;
+}
+
+.checkButton:active {
+  transform: translate(1px, 1px);
+}
+
+.removeButton {
+  color: tomato;
+  background-color: white;
+  width: 15%;
+  height: 100%;
+  display: inline-flex;
+}
+
+.removeButton > .fa-trash-alt {
+  margin: auto;
+}
+
+.removeButton:hover {
+  color: white;
+  background-color: red;
+  box-shadow: 6px 6px 6px lightgray;
+}
+
+.removeButton:active {
+  color: white;
+  background-color: red;
+  box-shadow: 3px 3px 6px lightgray;
+  transform: translate(1px, 1px);
+}
+
+.boxShadow {
+  box-shadow: 3px 3px 6px lightgray;
+}
