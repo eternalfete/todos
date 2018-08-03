@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Todos</title>
-  
-  <!-- <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet"> -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-  {% load staticfiles %}
-  <link rel="stylesheet" type="text/css" href="{% static 'todoapp/css/style.css' %}" />
-
-</head>
-
-<body>
-  <h1>TodoApp</h1>
-  {% verbatim %}
-  <div id="app">
-    <div id="todoInput" class="boxShadow">
-      <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
-      <button v-on:click="addTodo">
-        <i class="fas fa-plus"></i>
-      </button>
-    </div>
-    <ul id="todoList">
-      <li class="todoItem boxShadow" v-for="(todo, index) in todos">
+    <title>Todos</title>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'todoapp/css/style.css' %}" />
+  </head>
+  <body>
+    <h1>TodoApp</h1>
+    {% verbatim %}
+    <div id="app">
+      <div id="todoInput" class="boxShadow">
+        <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
+        <button v-on:click="addTodo">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <ul id="todoList">
+        <li class="todoItem boxShadow" v-for="(todo, index) in todos">
           <span class="checkButton" v-on:click="toggleComplete(todo, index)">
             <i class="fas fa-check" v-bind:class="{ complete: todo.complete }"></i>
             <p>{{ todo.title }}</p>
@@ -33,18 +30,17 @@
           <span class="removeButton" v-on:click="removeTodo(todo, index)">
             <i class="fas fa-trash-alt"></i>
           </span>
-      </li>
-    </ul>
-  </div>
-  {% endverbatim %}
+        </li>
+      </ul>
+    </div>
+    {% endverbatim %}
 
-  <!-- production version, optimized for size and speed -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
-  <!-- axios cdn -->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <!-- <script src="../static/todoapp/js/main.js"></script> -->
-  {% load staticfiles %}
-  <script src="{% static 'todoapp/js/main.js' %}"></script>
-</body>
-
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+    <!-- axios cdn -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src="../static/todoapp/js/main.js"></script> -->
+    {% load staticfiles %}
+    <script src="{% static 'todoapp/js/main.js' %}"></script>
+  </body>
 </html>

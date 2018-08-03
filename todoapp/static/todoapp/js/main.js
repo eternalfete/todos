@@ -47,7 +47,7 @@ var app = new Vue({
       })
       .catch(error => {
         console.log(error);
-      });      
+      });
     },
     removeTodo: function(todo, index) {
       axios.delete(this.url + todo.id)
@@ -59,7 +59,7 @@ var app = new Vue({
       });      
     }
   },
-  created() {
+  created: function() {
     this.getData();
   }
 })
